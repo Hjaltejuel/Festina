@@ -1,0 +1,142 @@
+﻿@model Image[]
+
+<head>
+    <script>
+        $("#main").removeClass("cover-container").addClass("topFlex");
+    </script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<form asp-action="uploadImage" method="post" enctype="multipart/form-data">
+
+
+    <div class="file-upload">
+        <button class="file-upload-btn" id="uploadbutton" type="submit">Upload</button>
+
+        <div class="image-upload-wrap">
+            <input class="file-upload-input" name="file" type='file' onchange="readURL(this);" accept="image/*" />
+            <div class="drag-text">
+                <h3>Træk og slip et billede eller tryk her for at vælge</h3>
+            </div>
+        </div>
+        <div class="file-upload-content">
+            <img class="file-upload-image" src="#" alt="your image" />
+            <div class="image-title-wrap">
+                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="rowImg">
+
+    <div class="columImg">
+        @for (int i = 0; i < Model.Length; i += 4)
+    {
+        <img class="myImg ModalImage" id="@i" src="@Model[i].src" alt="Billede @i" style="width:100%" />
+        <div id="@i modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="@i modalImg">
+            <div id="@i+caption" class="caption"></div>
+        </div>
+}
+    </div>
+    <div class="columImg">
+        @for (int i = 1; i < Model.Length; i += 4)
+    {
+        <img class="myImg ModalImage" id="@i" src="@Model[i].src" alt="Billede @i" style="width:100%" />
+        <div id="@i modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="@i modalImg">
+            <div id="@i+caption" class="caption"></div>
+        </div>
+}
+    </div>
+    <div class="columImg">
+        @for (int i = 2; i < Model.Length; i += 4)
+    {
+        <img class="myImg ModalImage" id="@i" src="@Model[i].src" alt="Billede @i" style="width:100%" />
+        <div id="@i modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="@i modalImg">
+            <div id="@i+caption" class="caption"></div>
+        </div>
+}
+    </div>
+    <div class="columImg">
+        @for (int i = 3; i < Model.Length; i += 4)
+    {
+        <img class="myImg ModalImage" id="@i" src="@Model[i].src"  alt="Billede @i" style="width:100%" />
+        <div id="@i modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="@i modalImg">
+            <div id="@i+caption" class="caption"></div>
+        </div>
+}
+    </div>
+
+</div>
+<script>
+
+    // Get the modal
+   var classname = document.getElementsByClassName("ModalImage");
+
+        var myFunction = function () {
+      
+        this.style.display = "block";
+            var id = this.id;
+            var modal = document.getElementById(id + " modal");
+        var modalImg = document.getElementById(id + " modalImg");
+            var captionText = document.getElementById(id + " caption");
+            modal.display = "block"
+        modalImg.src = this.src;
+        //captionText.innerHTML = this.alt;
+    };
+
+    for (var i = 0; i < classname.length; i++) {
+        classname[i].addEventListener('click', myFunction, false);
+    }
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            $('#uploadbutton').prop('disabled', false);
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+        $('#uploadbutton').prop('disabled', true);
+    }
+    $('#uploadbutton').prop('disabled', true);
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+</script>

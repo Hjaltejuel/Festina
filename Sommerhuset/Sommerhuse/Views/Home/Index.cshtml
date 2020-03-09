@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Hjem";
+}
+<body>
+    <script>
+        $(function () {
+            $('.nav-link').filter(function () { return this.href == location.href })
+                .addClass('active').siblings().removeClass('active')
+            $('.nav-link').click(function () {
+                $(this).parent().addClass('active').siblings().removeClass('active')
+            })
+        })
+    </script>
+
+    <h1 class="coverTitle">Information</h1>
+    <div>
+        <hr />
+    </div>
+    <p class="lead">Hej alle, her finder i vores sommerhus, links til relevante sidder og andet sjov. Selve Hjemmesiden her kan bruges til at booke dage og finde regler omkring sommerhuset. Vi håber at det vil blive brugt meget og at vi vil få mange hyggelige tider sammen i sommerhuset</p>
+    <div class="centered slightPadTop"><p>Morten & Tina</p></div>
+    <img class="centered" src="~/images/Sommerhus.jpg" alt="Sommerhus" />
+
+
+
+</body>

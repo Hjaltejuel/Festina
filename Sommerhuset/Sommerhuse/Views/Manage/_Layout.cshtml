@@ -1,0 +1,26 @@
+﻿@{ 
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="coverTitle">Din account</h2>
+
+<div>
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="form-inlinen">
+        <p class="lead">Skift dine account settings</p>
+        <button type="submit" class="btn testtest"><i class="fas fa-sign-out-alt fa-2x"></i> <span class="hiddenS">Log ud</span></button>
+       </form>
+    <hr />
+    @await Html.PartialAsync("_ManageNav")
+
+    <hr />
+    @RenderBody()
+
+
+
+
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+        

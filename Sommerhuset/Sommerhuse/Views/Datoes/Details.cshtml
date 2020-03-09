@@ -1,0 +1,44 @@
+﻿@model Sommerhuse.Models.Dato
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="coverTitle">Detaljer</h2>
+
+<div>
+    <h4 class="lead">Detaljer for bookning</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fra.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fra.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Til.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Til.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Personer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Personer)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="testtest" asp-action="Edit" asp-route-id="@Model.Id">Ændre</a> | 
+    <a class="testtest" asp-action="Delete" asp-route-id="@Model.Id">Slet</a> |
+    <a class="testtest" asp-action="Index">Tilbage til Planlægning</a>
+
+</div>

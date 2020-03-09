@@ -1,0 +1,44 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Registrer";
+}
+<script>
+    $(function () {
+        $('.nav-link').filter(function () { return this.href == location.href })
+                .addClass('active').siblings().removeClass('active')
+            $('.nav-link').click(function () {
+                $(this).parent().addClass('active').siblings().removeClass('active')
+            })
+        })
+</script>
+<h2 class="coverTitle">@ViewData["Title"]</h2>
+
+<div>
+    <div >
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Bekræft password</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Registrer</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

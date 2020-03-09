@@ -1,0 +1,43 @@
+﻿@model Sommerhuse.Models.Dato
+
+
+<h2 class="coverTitle">Lav en booking</h2>
+<div>
+    <hr />
+</div>
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Fra" class="control-label"></label>
+                <input asp-for="Fra" type="date" value='@TempData["Fra"]'  class="form-control" />
+                <span asp-validation-for="Fra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Til" class="control-label"></label>
+                <input asp-for="Til" type="date" value='@TempData["Til"]'  class="form-control" />
+                <span asp-validation-for="Til" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" value="Sommerhus"  class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Personer" class="control-label"></label>
+                <input asp-for="Personer" class="form-control" />
+                <span asp-validation-for="Personer" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" value="Create" class="btn btn-default">Lav ny</button>
+            </div>
+        </form>
+
+<div>
+    <a asp-action="Index">Tilbage til start</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

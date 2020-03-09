@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/images/house.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <!-- Bootstrap core CSS -->
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/cover.css" >
+    <title>@ViewData["Title"] - Familie domænet</title>
+
+
+    <link rel='stylesheet' href='~/fullcalendar/fullcalendar.min.css' />
+    <link rel='stylesheet' href='~/css/jquery.qtip.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+
+
+</head>
+<body>
+    <h3 class="title">Familie domænet</h3>
+    <header class="header">
+        <nav class="nav nav-header">
+            @await Html.PartialAsync("_LoginPartial")
+        </nav>
+    </header>
+
+    <div class="cover-container" id="main">
+           @RenderBody()
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ============================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+
+</html>

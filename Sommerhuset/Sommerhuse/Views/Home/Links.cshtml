@@ -1,0 +1,18 @@
+﻿<script>
+            $(function () {
+                $('.nav-link').filter(function () { return this.href == location.href })
+                    .addClass('active').siblings().removeClass('active')
+                $('.nav-link').click(function () {
+                    $(this).parent().addClass('active').siblings().removeClass('active')
+                })
+            })
+</script>
+<h1 class="coverTitle">Links</h1>
+<div>
+    <hr />
+</div>
+<p class="lead">Her finder i interresante links til forskellige resourcer tilhørende familien</p>
+<ul>
+    <li><a href="https://www.unoeuro.com/dk/webmail/">Email client</a></li>
+</ul>
+

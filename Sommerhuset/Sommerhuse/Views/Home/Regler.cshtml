@@ -1,0 +1,37 @@
+﻿<script>
+    $(function () {
+        $('.nav-link').filter(function () { return this.href == location.href })
+            .addClass('active').siblings().removeClass('active')
+        $('.nav-link').click(function () {
+            $(this).parent().addClass('active').siblings().removeClass('active')
+        })
+    })
+</script>
+
+
+<h1 class="coverTitle">Husregler</h1>
+<div>
+    <hr />
+</div>
+
+<p class="lead">
+    I hovedferier (skoleferier og helligdage) har familie førsteret.
+    Dvs – skal man bruge huset med venner, så spørger man lige først
+</p>
+<div>
+    <hr />
+</div>
+<p class="lead"> Mange gæster og høj musik er ikke en mulighed. Sommerhusene ligger tæt, og mange af naboerne bor der fast hele året.</p>
+<div>
+    <hr />
+</div>
+<p class="lead"> Man medbringer selv sengetøj og håndklæder.</p>
+<div>
+    <hr />
+</div>
+<p class="lead">Man gør rent efter sig (køkken-bad-støvsugning).</p>
+<div>
+    <hr />
+</div>
+<p class="lead">Hvis græsset trænger – så slår man det.</p>
+

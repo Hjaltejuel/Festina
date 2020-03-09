@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Identity
+@using Sommerhuse.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-fw fa-home fa-2x"></i> <span class="hiddenS">Hjem</span></a>
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Regler"><i class="fas fa-book fa-2x"></i> <span class="hiddenS">Regler</span></a>
+    <a class="nav-link" asp-area="" asp-controller="Datoes" asp-action="Index"><i class="far fa-calendar-check fa-2x"></i> <span class="hiddenS">Planl&aelig;gning</span></a>
+    <a class="nav-link" asp-area="" asp-controller="Images" asp-action="Index"><i class="fas fa-images fa-2x"></i> <span class="hiddenS">Billeder</span></a>
+    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register"><i class="far fa-plus-square fa-2x"></i> <span class="hiddenS">Register</span></a>
+    <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><i class="far fa-user fa-2x"></i> <span class="hiddenS">Profil</span></a>
+
+
+}
+else
+{
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-fw fa-home fa-2x"></i> Hjem</a>
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Regler"><i class="fas fa-book fa-2x"></i> Regler</a>
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Links"><i class="fas fa-link fa-2x"></i> Links</a>
+    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login"><i class="fas fa-sign-in-alt fa-2x"></i> Log ind</a>
+}

@@ -1,0 +1,45 @@
+﻿@model Sommerhuse.Models.Dato
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Slet en bookning</h2>
+
+<h3>Vil du gerne slette?</h3>
+<div>
+    <h4>Dato</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fra.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fra.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Til.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Til.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Personer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Personer)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Tilbage til start</a>
+    </form>
+</div>

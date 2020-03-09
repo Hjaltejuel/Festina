@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Sommerhuse.Models.Dato>
+
+
+<head>
+    <link href='~/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='~/fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://unpkg.com/tooltip.js"></script>
+
+    <script src="~/fullcalendar/moment.js"></script>
+    <script src="~/fullcalendar/moment-timezone-with-data-2012-2022.js"></script>
+
+
+    <script src='~/fullcalendar/core/main.js'></script>
+    <script src='~/fullcalendar/moment/main.js'></script>
+    <script src='~/fullcalendar/moment-timezone/main.js'></script>
+    <script src='~/fullcalendar/daygrid/main.js'></script>
+    <script src='~/fullcalendar/bootstrap/main.js'></script>
+    <script src="~/fullcalendar/interaction/main.js"></script>
+
+    <script>     
+
+        $(function () {
+            $('.nav-link').filter(function () { return this.href == location.href })
+                .addClass('active').siblings().removeClass('active')
+            $('.nav-link').click(function () {
+                $(this).parent().addClass('active').siblings().removeClass('active')
+            })
+        })
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid', 'interaction', 'moment', 'momentTimezone'],
+                selectable: true,
+                selectMirror: true,
+                firstDay: 1,
+                locale: 'da',
+                themeSystem: 'standard',
+                timeZone: 'Europe/Copenhagen',
+
+                events: [
+
+                            @foreach (var item in Model) {
+
+
+                                Random random = new Random();
+                                var number = random.Next(1, 4);
+                                string result = "";
+                                if(number == 1) { result = "#000080"; } else if (number == 2) { result = "#800000";} else { result = "#008000"; }
+
+
+                            @:{
+
+                            @: color: ('@result'),
+                            @: allDay: true,
+/**/
+                            @: title: ('@item.ToString()'),
+                            @: start: ('@Convert.ToDateTime(item.Fra).ToString("yyyy-MM-dd")'),
+                            @: end: ('@Convert.ToDateTime(item.Til).ToString("yyyy-MM-dd")'),
+                            @: description: ('@item.Personer.ToString()'),
+                            @: url: ('http://sommerhuset.azurewebsites.net//Datoes/Details/' + @item.Id),
+                            @:},
+
+                             }
+
+                ],
+
+                eventRender: function (info) {
+
+                    var tooltip = new Tooltip(info.el, {
+                        title: info.event.title,
+                        placement: 'top',
+                        trigger: 'hover',
+                        container: 'body'
+                    });
+                },
+
+                eventMouseEnter: function (event, jsEvent, view) {
+
+                    $(this).addClass("current_entry");
+
+                },
+                eventMouseLeave: function (event, jsEvent, view) {
+                    $(this).removeClass("current_entry");
+
+                },
+                dayClick: function (day, jsEvent, view) {
+                    let m = moment.tz(day, calendar.dateEnv.timeZone);
+                    var m_ShoppingCart = { Date: m.format() }
+                    $.ajax({
+                        url: '@Url.Action("SetTempData","Datoes")',
+                        async: false,
+                        type: "POST",
+                        data: JSON.stringify(m_ShoppingCart),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                    });
+
+
+                    window.location.href = '@Url.Action("Create", "Datoes")';
+
+
+                }
+                ,
+                select: function (start, end, jsEvent, view) {
+                    let start2 = moment.tz(start, calendar.dateEnv.timeZone);
+
+                    let end2 = moment.tz(end, calendar.dateEnv.timeZone);
+                    var m_ShoppingCart = {
+                        Start: start.startStr, End: start.endStr
+                    }
+                    $.ajax({
+                        url: '@Url.Action("SetTempData2","Datoes")',
+                        async: false,
+                        type: "POST",
+                        data: JSON.stringify(m_ShoppingCart),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                    });
+
+
+                    window.location.href = '@Url.Action("Create", "Datoes")';
+
+                }
+         
+            });
+
+            calendar.render();
+        })
+
+
+
+    </script>
+
+</head>
+
+<h2 class="coverTitle">Oversigt</h2>
+
+<p>
+    <a class="testtest" asp-action="Create">Tryk her eller på kalenderen for at lave en ny bookning</a>
+
+</p>
+<div class="calender" id='calendar'></div>
